@@ -1,6 +1,8 @@
 package com.example.dloflife.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.example.dloflife.entities.User;
 
@@ -10,6 +12,8 @@ public class UserDTO implements Serializable {
 	private Long id;
 	private String name;
 	private String email;
+
+	Set<RoleDTO> roles = new HashSet<>();
 
 	public UserDTO() {
 		super();
@@ -51,4 +55,9 @@ public class UserDTO implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public Set<RoleDTO> getRoles() {
+		return roles;
+	}
+
 }
