@@ -72,8 +72,10 @@ public class UserService implements UserDetailsService {
 	@Transactional
 	public UserDTO update(Long id, UserUpdateDTO dto) {
 		try {
+			authService.validateSelfOrAdmin(id);
 			User entity = repository.getOne(id);
 			copyDtoToEntity(dto, entity);
+			entity.setPassword(passwordEncoder.encode(dto.getPassword()));
 			entity = repository.save(entity);
 			return new UserDTO(entity);
 		} catch (EntityNotFoundException e) {
@@ -83,6 +85,7 @@ public class UserService implements UserDetailsService {
 
 	public void delete(Long id) {
 		try {
+			authService.validateSelfOrAdmin(id);
 			repository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException("ID " + id + " não encontrado ");
