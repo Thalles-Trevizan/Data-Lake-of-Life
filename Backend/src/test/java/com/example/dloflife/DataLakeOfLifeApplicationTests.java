@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.dloflife;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
